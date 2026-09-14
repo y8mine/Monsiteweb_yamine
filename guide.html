@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'utilisation - Portfolio PHP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f4f6f9;
+        }
+        h1 {
+            color: #2b3d5b;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 30px;
+        }
+        .section {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .feature {
+            display: flex;
+            align-items: start;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 5px;
+        }
+        .feature-icon {
+            font-size: 2em;
+            margin-right: 20px;
+            color: #007bff;
+        }
+        .feature-content h3 {
+            margin: 0 0 10px 0;
+            color: #2b3d5b;
+        }
+        .step {
+            background: #e7f1ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #007bff;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .nav-pages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .page-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .page-card:hover {
+            transform: translateY(-5px);
+        }
+        .page-card h3 {
+            margin: 10px 0 5px 0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>📘 Guide d'Utilisation - Portfolio PHP</h1>
+
+    <div class="section">
+        <h2>🎯 Vue d'ensemble</h2>
+        <p>
+            Bienvenue dans votre portfolio professionnel ! Ce système vous permet de gérer facilement
+            toutes vos informations professionnelles à travers une interface web intuitive.
+        </p>
+        
+        <div class="nav-pages">
+            <a href="index.php" class="page-card">
+                <div style="font-size: 2em;">👤</div>
+                <h3>Profil</h3>
+                <p>Informations personnelles</p>
+            </a>
+            <a href="formations.php" class="page-card">
+                <div style="font-size: 2em;">🎓</div>
+                <h3>Formations</h3>
+                <p>Parcours académique</p>
+            </a>
+            <a href="experiences.php" class="page-card">
+                <div style="font-size: 2em;">💼</div>
+                <h3>Expériences</h3>
+                <p>Parcours professionnel</p>
+            </a>
+            <a href="projets.php" class="page-card">
+                <div style="font-size: 2em;">📁</div>
+                <h3>Projets</h3>
+                <p>Réalisations techniques</p>
+            </a>
+            <a href="competences.php" class="page-card">
+                <div style="font-size: 2em;">🏆</div>
+                <h3>Compétences</h3>
+                <p>Compétences techniques</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🚀 Démarrage Rapide</h2>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Configuration initiale</strong>
+            <ul>
+                <li>Ouvrez <code>config.php</code></li>
+                <li>Modifiez les paramètres de connexion SQL Server</li>
+                <li>Enregistrez le fichier</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Création de la base de données</strong>
+            <ul>
+                <li>Ouvrez SQL Server Management Studio</li>
+                <li>Exécutez le script <code>code.sql</code></li>
+                <li>Exécutez le script <code>alimentation.sql</code> (optionnel - données de test)</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Accès au site</strong>
+            <ul>
+                <li>Ouvrez votre navigateur</li>
+                <li>Accédez à <code>http://localhost/portfolio/admin.php</code></li>
+                <li>Vérifiez que la connexion est établie</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            ✅ <strong>Félicitations !</strong> Votre portfolio est prêt à être utilisé.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📋 Fonctionnalités Détaillées</h2>
+
+        <div class="feature">
+            <div class="feature-icon">👤</div>
+            <div class="feature-content">
+                <h3>Gestion du Profil</h3>
+                <p>Modifiez vos informations personnelles :</p>
+                <ul>
+                    <li>Nom et prénom</li>
+                    <li>Email et téléphone</li>
+                    <li>Description professionnelle</li>
+                    <li>Liste des expériences en aperçu</li>
+                </ul>
+                <p><strong>💡 Astuce :</strong> Rédigez une description accrocheuse qui résume votre profil en quelques lignes.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🎓</div>
+            <div class="feature-content">
+                <h3>Gestion des Formations</h3>
+                <p>Documentez votre parcours académique :</p>
+                <ul>
+                    <li>Ajoutez vos diplômes et certifications</li>
+                    <li>Indiquez l'établissement et la ville</li>
+                    <li>Précisez les dates (début et fin)</li>
+                    <li>Ajoutez une description (optionnelle)</li>
+                </ul>
+                <p><strong>💡 Astuce :</strong> Commencez par la formation la plus récente.</p>
+                <div class="info">
+                    <strong>ℹ️ Affichage :</strong> Les formations sont présentées en timeline chronologique inversée.
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">💼</div>
+            <div class="feature-content">
+                <h3>Gestion des Expériences</h3>
+                <p>Valorisez votre parcours professionnel :</p>
+                <ul>
+                    <li>Titre du poste</li>
+                    <li>Entreprise ou organisation</li>
+                    <li>Dates de début et fin (laisser vide si en cours)</li>
+                    <li>Missions et réalisations</li>
+                    <li>Association avec un projet (optionnel)</li>
+                </ul>
+                <p><strong>💡 Astuce pour les réalisations :</strong> Écrivez une réalisation par ligne pour qu'elles s'affichent sous forme de liste à puces.</p>
+                <div class="success">
+                    ✨ <strong>Fonctionnalité :</strong> Les descriptions longues affichent un bouton "Lire plus" automatiquement.
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📁</div>
+            <div class="feature-content">
+                <h3>Gestion des Projets</h3>
+                <p>Présentez vos réalisations techniques :</p>
+                <ul>
+                    <li>Titre du projet</li>
+                    <li>Description détaillée</li>
+                    <li>Technologies utilisées (séparées par des virgules)</li>
+                    <li>Lien vers le code source (GitHub, GitLab...)</li>
+                    <li>Lien vers une démo en ligne</li>
+                    <li>Dates de réalisation</li>
+                    <li>Compétences associées (sélection multiple)</li>
+                </ul>
+                <p><strong>💡 Astuce :</strong> Associez vos compétences aux projets pour créer des liens cohérents.</p>
+                <div class="info">
+                    <strong>ℹ️ Affichage :</strong> Les projets sont présentés en grille de cartes avec code couleur.
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-content">
+                <h3>Gestion des Compétences</h3>
+                <p>Organisez vos compétences techniques :</p>
+                <ul>
+                    <li>Nom de la compétence (ex: Python, SQL Server...)</li>
+                    <li>Catégorie (ex: Langages, Outils, SGBD...)</li>
+                    <li>Niveau de maîtrise (Débutant, Intermédiaire, Avancé, Expert)</li>
+                </ul>
+                <p><strong>💡 Astuce :</strong> Créez des catégories pour regrouper vos compétences (Développement Web, Data Science, etc.)</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Niveau</th>
+                            <th>Pourcentage</th>
+                            <th>Couleur</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Débutant</td>
+                            <td>40%</td>
+                            <td style="background: #ffc107; color: white;">Jaune</td>
+                            <td>Notions de base</td>
+                        </tr>
+                        <tr>
+                            <td>Intermédiaire</td>
+                            <td>70%</td>
+                            <td style="background: #17a2b8; color: white;">Bleu</td>
+                            <td>Pratique régulière</td>
+                        </tr>
+                        <tr>
+                            <td>Avancé</td>
+                            <td>95%</td>
+                            <td style="background: #28a745; color: white;">Vert</td>
+                            <td>Maîtrise confirmée</td>
+                        </tr>
+                        <tr>
+                            <td>Expert</td>
+                            <td>95%</td>
+                            <td style="background: #28a745; color: white;">Vert</td>
+                            <td>Expertise approfondie</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success">
+                    ✨ <strong>Fonctionnalités :</strong>
+                    <ul>
+                        <li>Nuage de mots-clés interactif</li>
+                        <li>Barres de progression colorées selon le niveau</li>
+                        <li>Organisation automatique par catégories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚠️ Points Importants</h2>
+
+        <div class="warning">
+            <strong>🔐 Sécurité :</strong>
+            <p>Ce portfolio ne possède pas de système d'authentification. Pour une utilisation en production, ajoutez un système de connexion sécurisé.</p>
+        </div>
+
+        <div class="warning">
+            <strong>💾 Sauvegarde :</strong>
+            <p>Pensez à effectuer des sauvegardes régulières de votre base de données SQL Server.</p>
+        </div>
+
+        <div class="info">
+            <strong>🌐 Compatibilité :</strong>
+            <p>Le site est compatible avec tous les navigateurs modernes (Chrome, Firefox, Edge, Safari).</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💡 Conseils d'Utilisation</h2>
+
+        <h3>Ordre de remplissage recommandé :</h3>
+        <ol style="line-height: 2;">
+            <li><strong>Profil</strong> : Commencez par renseigner vos informations de base</li>
+            <li><strong>Compétences</strong> : Créez vos catégories et listez vos compétences</li>
+            <li><strong>Formations</strong> : Ajoutez votre parcours académique</li>
+            <li><strong>Projets</strong> : Créez vos projets en associant les compétences</li>
+            <li><strong>Expériences</strong> : Documentez vos expériences en les liant aux projets</li>
+        </ol>
+
+        <h3>Rédaction des descriptions :</h3>
+        <ul>
+            <li>Soyez concis mais précis</li>
+            <li>Utilisez des verbes d'action (développé, créé, analysé...)</li>
+            <li>Quantifiez vos réalisations quand c'est possible</li>
+            <li>Pour les expériences, listez vos réalisations ligne par ligne</li>
+        </ul>
+
+        <h3>Gestion des dates :</h3>
+        <ul>
+            <li>Laissez la date de fin vide pour indiquer "En cours"</li>
+            <li>Les dates sont affichées au format MM/YYYY</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🔧 Maintenance</h2>
+
+        <h3>Modification de la connexion :</h3>
+        <p>Pour changer les paramètres de connexion à SQL Server, éditez <code>config.php</code> :</p>
+        <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto;">
+$serverName = "localhost";  // Adresse du serveur
+$database = "Portfolio";     // Nom de la base
+$uid = "votre_login";       // Identifiant
+$pwd = "votre_password";    // Mot de passe
+        </pre>
+
+        <h3>Personnalisation visuelle :</h3>
+        <p>Modifiez <code>style.css</code> pour changer les couleurs et styles du site.</p>
+    </div>
+
+    <div class="section">
+        <h2>📞 Support</h2>
+        <p>En cas de problème :</p>
+        <ol>
+            <li>Vérifiez que SQL Server est bien démarré</li>
+            <li>Vérifiez les paramètres de connexion dans <code>config.php</code></li>
+            <li>Consultez les logs d'erreur PHP</li>
+            <li>Vérifiez que l'extension <code>sqlsrv</code> est bien chargée</li>
+        </ol>
+
+        <div class="info">
+            <strong>Test de l'extension :</strong> Utilisez la commande <code>php -m</code> en ligne de commande pour vérifier si <code>sqlsrv</code> et <code>pdo_sqlsrv</code> sont listés.
+        </div>
+    </div>
+
+    <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h2 style="color: white; border-bottom-color: white;">🎉 Prêt à commencer !</h2>
+        <p style="font-size: 1.1em;">
+            Votre portfolio est maintenant configuré et prêt à l'emploi. Commencez par remplir votre profil
+            et ajoutez progressivement vos formations, expériences, projets et compétences.
+        </p>
+        <p style="text-align: center; margin-top: 30px;">
+            <a href="admin.php" style="background: white; color: #667eea; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: bold;">
+                🚀 Accéder au tableau de bord
+            </a>
+        </p>
+    </div>
+</body>
+</html>

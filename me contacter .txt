@@ -1,0 +1,17 @@
+me contacter 
+	mettre numero telephone
+	mail
+	
+
+projets au lieu de réalisation
+	mettre un pop up projets 
+	1 projet à une ou plusieurs réalisation
+	mettre la source du projet
+	mettre un filtre
+
+compétences 
+	mettre un peu de texte
+	
+
+modifier stage
+	poste du stage

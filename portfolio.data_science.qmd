@@ -1,0 +1,300 @@
+---
+title: "Portfolio Data Science"
+subtitle: "Développement Web & Base de Données"
+author: "Yamine EL GAZI"
+institute: "IUT de Lille - BUT STID (Parcours VCOD)"
+date: today
+date-format: "D MMMM YYYY"
+format: 
+  revealjs:
+    theme: night
+    transition: concave
+    slide-number: c/t
+    show-slide-number: all
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg"
+    footer: "Soutenance Portfolio - BUT STID 3"
+    code-line-numbers: true
+    code-copy: true
+    center: true
+    chalkboard: true
+---
+
+# 1. Présentation & Organisation {background-color="#0f172a"}
+
+## Contexte du Projet
+
+::: {.incremental}
+- **Le Besoin :** Créer une vitrine pour mes projets Data (Machine Learning, Dataviz).
+- **La Solution :** Un site web dynamique (PHP/SQL) avec administration.
+:::
+
+## Architecture Technique
+
+::: {.incremental}
+
+```{text}
+Portfolio/
+│
+├── admin/                 
+│   ├── auth.php           
+│   ├── dashboard.php      
+│   ├── login.php          
+│   ├── logout.php         
+│   └── projets.php        
+│
+├── assets/                
+│   ├── css/
+│   │   └── style.css      
+│   ├── js/
+│   │   └── canvas.js      
+│   └── img/
+│       └── logo.png      
+│
+├── includes/              
+│   ├── header.php         
+│   ├── footer.php         
+│   └── functions.php      
+│
+├── uploads/               
+│   ├── cv.pdf             
+│   └── projets/           
+│
+├── config.php             
+├── index.php              
+├── database.sql           
+└── README.md              
+```
+
+::: notes
+Expliquer que cette structure permet une maintenance facile.  
+Si je veux changer le design, je touche à style.css.  
+Si je veux changer la base de données, je touche à config.php.
+:::
+
+
+
+
+## 2. Base de Données (MCD) {background-color="#1e293b"}
+
+### Modèle Conceptuel de Données
+
+Le cœur du système repose sur une base relationnelle stricte.
+
+
+```{mermaid}
+classDiagram
+    direction LR
+    %% Table UTILISATEUR
+    class UTILISATEUR {
+        +int id_utilisateur (PK)
+        +string nom
+        +string prenom
+        +string email
+        +text description
+        +string avatar
+        +string cv_pdf
+    }
+
+    %% Table FORMATION
+    class FORMATION {
+        +int id_formation (PK)
+        +int id_utilisateur (FK)
+        +string diplome
+        +string ecole
+        +date date_debut
+        +date date_fin
+    }
+
+    %% Table EXPERIENCE
+    class EXPERIENCE {
+        +int id_experience (PK)
+        +int id_utilisateur (FK)
+        +string titre
+        +string entreprise
+        +date date_debut
+        +date date_fin
+        +string logo
+    }
+
+    %% Table PROJET
+    class PROJET {
+        +int id_projet (PK)
+        +int id_utilisateur (FK)
+        +string titre
+        +string image
+        +string lien_code
+    }
+
+    %% Table COMPETENCE
+    class COMPETENCE {
+        +int id_competence (PK)
+        +string nom_competence
+        +string niveau
+        +string categorie
+    }
+
+    %% Table de Liaison (Spécifique MLD)
+    class PROJET_COMPETENCE {
+        +int id_projet (PK, FK)
+        +int id_competence (PK, FK)
+    }
+
+    %% Relations avec cardinalités pour le MLD
+    UTILISATEUR "1" -- "*" FORMATION : possède
+    UTILISATEUR "1" -- "*" EXPERIENCE : a_réalisé
+    UTILISATEUR "1" -- "*" PROJET : a_créé
+    
+    PROJET "1" -- "*" PROJET_COMPETENCE : contient
+    COMPETENCE "1" -- "*" PROJET_COMPETENCE : est_dans
+```
+
+
+---
+
+## Focus Many-to-Many
+
+```{markdown}
+### Focus : La Relation Many-to-Many
+
+C'est le point technique clé de la base de données.
+
+::: {.columns}
+
+::: {.column width="50%"}
+#### Le Problème
+Un projet (ex : DVF Immo) utilise plusieurs technologies (Python + SQL).  
+Une technologie est utilisée dans plusieurs projets.
+:::
+
+::: {.column width="50%"}
+#### La Solution
+La table pivot `projet_competence`.
+:::
+
+:::
+
+::: {.fragment}
+**Résultat :**  
+Cela permet d'afficher dynamiquement les logos des technos sous chaque carte projet sans duplication de données.
+:::
+
+## 3. Développement Backend {background-color="#334155"}
+
+### Choix Technologiques
+
+**Pourquoi PHP Natif et pas un CMS (WordPress) ?**
+
+- **Maîtrise totale** : Comprendre ce qui se passe sous le capot (Sessions, Requêtes HTTP).  
+- **Performance** : Pas de surcharge de code inutile.  
+- **Sécurité** : Mise en place manuelle des protections (OWASP).
+
+---
+
+### Sécurité du Code (CRUD)
+
+Exemple d'insertion sécurisée d'un projet (Protection contre les Injections SQL).
+
+```{php}
+// Requête préparée avec PDO
+$sql = "INSERT INTO projet (titre, description) VALUES (?, ?)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$titre, $description]);
+```
+
+
+
+---
+
+## 4️⃣ Restitution Frontend
+
+```markdown
+## 4. Restitution Frontend {background-color="#475569"}
+
+### Design System "Data Science"
+
+L'objectif visuel était de rappeler l'univers de la Data et de l'IA.
+
+- **Palette** : Dark Mode (#0f172a - Bleu Nuit Profond).  
+- **Glassmorphism** : Effet de transparence et de flou  
+  (`backdrop-filter: blur(10px)`) sur les cartes pour donner de la profondeur.  
+- **UX** : Fenêtres modales (Pop-up) pour lire les détails des projets sans quitter la page.
+
+---
+
+### L'Animation "Réseau de Neurones"
+
+Développement d'un fond interactif en JavaScript (Canvas API).
+
+```{javascript}
+// Dessin des connexions entre particules
+if (distance < connectionDistance) {
+    ctx.beginPath();
+    ctx.moveTo(particles[i].x, particles[i].y);
+    ctx.lineTo(particles[j].x, particles[j].y);
+    ctx.stroke();
+}
+```
+
+
+---
+
+## 5 La part de l’IA
+
+```markdown
+## 5. La part de l'IA {background-color="#64748b"}
+
+### Assistant de Productivité
+
+L'Intelligence Artificielle (LLM) a été intégrée au workflow de développement,  
+non pas pour remplacer le développeur, mais pour l'augmenter.
+
+::: {.incremental}
+
+- **Génération de Jeux de Données (SQL)** :  
+  Création rapide de contenu réaliste pour peupler la base  
+  (Descriptions des projets DVF, Deep Learning, etc.).
+
+- **Débogage SQL Complexe** :  
+  Aide à la construction des jointures JOIN triples  
+  (Projet <-> Pivot <-> Compétence).
+
+- **Optimisation CSS** :  
+  Suggestions pour l'alignement Flexbox et Grid des cartes projets.
+
+:::
+
+## 6. Démonstration {background-color="#0f172a"}
+
+### Scénario de la Démo
+
+Je vous invite à passer sur le navigateur pour :
+
+- **Front-Office** : Explorer l'animation interactive et le filtrage des projets.  
+- **Back-Office** : Se connecter à l'espace admin (`/admin.php`).  
+- **CRUD** : Ajouter une nouvelle compétence "Live Demo".  
+- **Vérification** : Constater la mise à jour immédiate sur le site public.
+
+*(Transition vers le navigateur)*
+
+## 7. Conclusions & Perspectives {background-color="#1e293b"}
+
+### Bilan
+
+::: {.column width="50%"}
+**Ce qui est fait**
+
+- Site 100% Fonctionnel  
+- Base de données normalisée  
+- Design responsive
+:::
+
+::: {.column width="50%"}
+**Perspectives**
+
+- Mise en production (OVH)  
+- Ajout d'un Blog technique  
+- Ajout de commentaires interactifs
+:::
+```
+
+

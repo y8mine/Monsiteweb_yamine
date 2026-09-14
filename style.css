@@ -1,0 +1,477 @@
+:root {
+    --primary-color: #3b82f6; /* Bleu électrique */
+    --nav-bg: #1e293b;       /* Gris foncé bleuté (Barre du haut) */
+    --body-bg: #0f172a;      /* Fond très sombre (Page) */
+    --text-color: #f1f5f9;   /* Texte presque blanc */
+    --border-color: #334155; /* Bordures grisées */
+    --card-bg: #1e293b;      /* Fond des cartes (Doit être ajouté au CSS des cartes) */
+}
+
+/* AJOUT SPÉCIAL DARK MODE : Il faut dire aux cartes d'utiliser la variable */
+.card, .navbar-container, .modal-content, .project-card, .timeline-content {
+    background-color: var(--nav-bg) !important;
+    color: var(--text-color);
+}
+/* Ajustement des textes sur fond sombre */
+.nav-link, h3, h4, label, .project-dates, .timeline-date {
+    color: var(--text-color) !important;
+}
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+table th {
+    background-color: #0f172a !important;
+    color: white;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+}
+
+/* --- BARRE DE NAVIGATION HORIZONTALE --- */
+.top-navbar {
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 0 20px;
+    position: sticky; /* La barre reste en haut si on scrolle */
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px; /* Largeur max pour ne pas être trop étiré */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-right: 40px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 20px; /* Espace entre les liens */
+    flex-grow: 1;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link:hover {
+    background-color: #f0f8ff;
+    color: var(--primary-color);
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: #e7f1ff;
+    font-weight: bold;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: #dc3545;
+    font-size: 0.9rem;
+}
+
+/* --- CONTENU PRINCIPAL --- */
+.main-content {
+    max-width: 1000px; /* Contenu centré et pas trop large */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.welcome-banner {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+h3 {
+    border-bottom: 2px solid var(--body-bg);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* --- FORMULAIRES --- */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box; /* Important pour que le padding ne dépasse pas */
+}
+
+/* --- BOUTONS --- */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    margin-top: 15px;
+}
+
+/* --- TABLEAU --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+.action-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* --- NOUVEAU CSS POUR PROJETS ET COMPÉTENCES --- */
+
+/* Grille pour les projets */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Grille responsive */
+    gap: 20px;
+}
+
+.project-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Effet de survol */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.project-image {
+    height: 150px;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.project-details {
+    padding: 15px;
+}
+
+/* Barres de compétences */
+.skill-item {
+    margin-bottom: 15px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.progress-bar-bg {
+    background-color: #e9ecef;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%; /* Sera défini dans le HTML */
+}
+
+/* Bouton "Voir le site" dans l'admin */
+.btn-view-site {
+    text-decoration: none;
+    background-color: #28a745; /* Vert */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: all 0.3s;
+}
+
+.btn-view-site:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.project-img-container {
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.project-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.project-card-public:hover .project-img-container img {
+    transform: scale(1.1); /* Zoom au survol */
+}
+
+/* Bouton Rouge : Dashboard / Admin */
+.btn-admin {
+    color: #dc3545;
+    border-color: #dc3545;
+    background: white;
+}
+.btn-admin:hover {
+    background: #dc3545;
+    color: white;
+}
+
+
+/* --- BOUTONS D'EN-TÊTE --- */
+.user-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Le Bouton VERT (Site Public) */
+.btn-site {
+    background-color: #28a745; /* Vert */
+    color: white !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+    border: none;
+}
+.btn-site:hover {
+    background-color: #218838; /* Vert plus foncé au survol */
+}
+
+/* Le Bouton ROUGE (Dashboard/Admin) */
+.btn-dashboard {
+    background-color: #dc3545; /* Rouge */
+    color: white !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+    border: none;
+}
+.btn-dashboard:hover {
+    background-color: #c82333; /* Rouge plus foncé au survol */
+}
+
+/* --- DASHBOARD DATA SCIENTIST --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: var(--nav-bg); /* Couleur sombre du thème */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 140px;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-color: var(--primary-color);
+}
+
+/* Petit effet visuel "tech" en arrière-plan */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 100px; height: 100px;
+    background: var(--primary-color);
+    opacity: 0.1;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: 'Segoe UI', monospace; /* Police style code */
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888; /* Gris clair */
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Couleurs spécifiques pour chaque carte (Optionnel) */
+.card-blue .stat-icon { color: #3b82f6; }
+.card-green .stat-icon { color: #10b981; }
+.card-purple .stat-icon { color: #8b5cf6; }
+.card-orange .stat-icon { color: #f59e0b; }
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.action-card {
+    background: var(--nav-bg);
+    border: 1px dashed var(--border-color);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: 0.3s;
+}
+.action-card:hover {
+    background: var(--body-bg);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* --- FORMULAIRES DARK MODE --- */
+
+/* Couleur de fond des champs de saisie (Input et Textarea) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="file"],
+textarea,
+select,
+.form-control {
+    background-color: #1e293b !important; /* Gris bleuté foncé */
+    color: #f1f5f9 !important;            /* Texte blanc */
+    border: 1px solid #475569 !important; /* Bordure discrète */
+    transition: all 0.3s ease;
+}
+
+/* Au clic (Focus) */
+input:focus, textarea:focus, select:focus {
+    background-color: #0f172a !important; /* Encore plus foncé au clic */
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    outline: none;
+}
+
+/* Couleur du texte indicatif (Placeholder) */
+::placeholder {
+    color: #94a3b8;
+    opacity: 0.7;
+}
+
+/* Pour les zones de téléchargement (les cadres gris clair autour des boutons parcourir) */
+.upload-zone {
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Translucide */
+    border: 1px dashed #475569;
+    color: white;
+}
